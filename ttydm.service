@@ -1,0 +1,20 @@
+[Unit]
+Description=TTY Display Manager on %I
+After=getty@%i.service
+Conflicts=getty@%i.service
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/ttydm
+StandardInput=tty
+StandardOutput=inherit
+StandardError=inherit
+TTYPath=/dev/%i
+TTYReset=yes
+TTYVHangup=yes
+TTYVTDisallocate=yes
+Restart=always
+User=root
+
+[Install]
+WantedBy=getty.target
